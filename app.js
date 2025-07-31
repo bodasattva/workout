@@ -91,3 +91,30 @@ if ('serviceWorker' in navigator) {
     console.log('Service Worker Registered');
   });
 };
+
+
+// Play ding sound when timer ends
+function playDing() {
+    const ding = document.getElementById('ding');
+    if (ding) ding.play();
+}
+
+// Add workout name functionality
+function saveWorkoutWithName(name, exercises) {
+    const workouts = JSON.parse(localStorage.getItem('namedWorkouts') || '{}');
+    workouts[name] = exercises;
+    localStorage.setItem('namedWorkouts', JSON.stringify(workouts));
+}
+
+function loadWorkoutByName(name) {
+    const workouts = JSON.parse(localStorage.getItem('namedWorkouts') || '{}');
+    return workouts[name] || [];
+}
+
+function listSavedWorkoutNames() {
+    const workouts = JSON.parse(localStorage.getItem('namedWorkouts') || '{}');
+    return Object.keys(workouts);
+}
+
+// Example integration - call playDing() when timer ends, and prompt for naming
+// You must hook these into your existing UI accordingly.
