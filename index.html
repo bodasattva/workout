@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2c3e50" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Workout Logger</title>
+</head>
+<body>
+  <main>
+    <h1>Workout Logger</h1>
+    <form id="exercise-form">
+      <input type="text" id="exercise-name" placeholder="Exercise name" required />
+      <input type="number" id="weight" placeholder="Weight (lbs)" required />
+      <input type="number" id="reps" placeholder="Reps" required />
+      <button type="button" id="add-set">Add Set</button>
+      <button type="submit">Save Workout</button>
+    </form>
+
+    <section id="sets-list"></section>
+
+    <section id="rest-timer">
+      <h2>Rest Timer</h2>
+      <input type="number" id="rest-seconds" placeholder="Seconds" />
+      <button type="button" id="start-timer">Start Rest</button>
+      <p id="timer-display">00:00</p>
+    </section>
+
+    <section id="history">
+      <h2>Workout History</h2>
+      <ul id="history-list"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
