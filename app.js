@@ -77,6 +77,7 @@ document.getElementById('start-timer').onclick = () => {
   clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     if (timeLeft <= 0) {
+      playDing();
       clearInterval(timerInterval);
     }
     const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
