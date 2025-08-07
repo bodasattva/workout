@@ -3,6 +3,8 @@ let editIndex = null;
 const form = document.getElementById('exercise-form');
 const setsList = document.getElementById('sets-list');
 const historyList = document.getElementById('history-list');
+const templateNameInput = document.getElementById('template-name');
+const workoutTemplatesSelect = document.getElementById('workout-templates');
 
 document.getElementById('add-set').onclick = () => {
   const name = document.getElementById('exercise-name').value;
@@ -67,7 +69,49 @@ function deleteWorkout(index) {
   renderHistory();
 }
 
+function renderTemplateList() {
+    const names = listSavedWorkoutNames();
+    workoutTemplatesSelect.innerHTML = names.map(name => `<option value="${name}">${name}</option>`).join('');
+}
+
+document.getElementById('save-template').addEventListener('click', () => {
+    const name = templateNameInput.value.trim();
+    if (name && sets.length > 0) {
+        saveWorkoutWithName(name, sets);
+        templateNameInput.value = '';
+        renderTemplateList();
+    } else {
+        alert('Please enter a template name and add at least one exercise.');
+    }
+});
+
+document.getElementById('load-template').addEventListener('click', () => {
+    const name = workoutTemplatesSelect.value;
+    if (name) {
+        const loadedSets = loadWorkoutByName(name);
+        if(loadedSets) {
+            sets = loadedSets;
+            renderSets();
+        }
+    }
+});
+
+function deleteWorkoutByName(name) {
+    const workouts = JSON.parse(localStorage.getItem('namedWorkouts') || '{}');
+    delete workouts[name];
+    localStorage.setItem('namedWorkouts', JSON.stringify(workouts));
+}
+
+document.getElementById('delete-template').addEventListener('click', () => {
+    const name = workoutTemplatesSelect.value;
+    if (name && confirm(`Are you sure you want to delete the "${name}" template?`)) {
+        deleteWorkoutByName(name);
+        renderTemplateList();
+    }
+});
+
 renderHistory();
+renderTemplateList();
 
 let timerInterval;
 document.getElementById('start-timer').onclick = () => {
