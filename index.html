@@ -11,12 +11,26 @@
 <body>
   <main>
     <h1>Workout Logger</h1>
+
+    <section id="workout-templates-section">
+      <h2>Workout Templates</h2>
+      <input type="text" id="template-name" placeholder="Template Name (e.g., Back Day)" />
+      <button type="button" id="save-template">Save Template</button>
+      <br>
+      <select id="workout-templates"></select>
+      <button type="button" id="load-template">Load Template</button>
+      <button type="button" id="delete-template">Delete Template</button>
+    </section>
+
+    <hr>
+
+    <h2>Current Workout</h2>
     <form id="exercise-form">
       <input type="text" id="exercise-name" placeholder="Exercise name" required />
       <input type="number" id="weight" placeholder="Weight (lbs)" required />
       <input type="number" id="reps" placeholder="Reps" required />
       <button type="button" id="add-set">Add Set</button>
-      <button type="submit">Save Workout</button>
+      <button type="submit">Log Workout</button>
     </form>
 
     <section id="sets-list"></section>
@@ -40,3 +54,4 @@
 
 </body>
 </html>
+
